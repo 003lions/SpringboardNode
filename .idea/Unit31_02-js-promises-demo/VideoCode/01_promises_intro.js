@@ -9,14 +9,19 @@
 // Note: We are using jQuery because it still supports "the old way" 
 // (axios only supports promises)
 // ==============================================
-
+// Async + AJAX
+// Let's try to pull some data with jQuery, which utilizes callbacks
+// (we're just using this as an example since axios doesn't support callbacks)
+// ==============================================
 // let planet;
 // $.getJSON("https://swapi.dev/api/planets/1/", response => {
 //   planet = response;
 //   console.log(planet);
+
 //   $.getJSON(planet.residents[0], response => {
 //     resident = response;
 //     console.log(resident);
+
 //     $.getJSON(resident.films[0], response => {
 //       film = response;
 //       console.log(film);
