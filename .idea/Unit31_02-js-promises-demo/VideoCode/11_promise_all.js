@@ -6,6 +6,13 @@ for (let i = 1; i < 5; i++) {
   );
 }
 
+
+// create 404 error
+// fourPokemonPromises.push(axios.get('kjedbfekrjn'))
+
+// Promise.all
+// resolves when all four promises are resolved
+// rejects if any of the promises are rejected
 Promise.all(fourPokemonPromises)
   .then(pokemonArr => {
     for (res of pokemonArr) {
@@ -14,16 +21,3 @@ Promise.all(fourPokemonPromises)
   })
   .catch(err => console.log(err));
 
-// let fourPokemonRace = [];
-
-// for (let i = 1; i < 5; i++) {
-//   fourPokemonRace.push(
-//     axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-//   );
-// }
-
-// Promise.race(fourPokemonRace)
-//   .then(res => {
-//     console.log(`${res.data.name} won the race!`)
-//   })
-//   .catch(err => console.log(err)) 
