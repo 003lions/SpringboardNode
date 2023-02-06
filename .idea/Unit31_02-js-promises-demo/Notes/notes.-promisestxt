@@ -1,0 +1,8 @@
+
+JavaScript is single threaded
+    The call stack
+    one thread == one call stack == one thing at a time
+
+asynchronous callbacks
+
+
