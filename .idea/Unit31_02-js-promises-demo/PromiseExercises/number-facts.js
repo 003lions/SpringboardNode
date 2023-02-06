@@ -8,7 +8,7 @@ const favoriteNumber = 7;
 //    Make sure you get back JSON by including the json query key, specific to this API. Details (http://numbersapi.com/#json}.
 //    So use ?json for example http://numbersapi.com/random/year?json
 
-$.getJSON(`${baseURL}/${favoriteNumber}?json`)
+$.get(`${baseURL}/${favoriteNumber}?json`)
   .then(data => {
   console.log(data);
 });
@@ -27,6 +27,7 @@ Promise.all(
   .then(facts => {
     facts.forEach(fact => $("body").append(`<div>${fact.text}</div><br>`));
 });
+
 
 // 3 Use the API to get 4 facts on your favorite number. Once you have them all, put them on the page.
 // It’s okay if some of the facts are repeats.
