@@ -1,9 +1,12 @@
+// "error-first" pattern
+
 const fs = require('fs');
 
+// fs.readFile('myFile.txt', 'utf8', (err, data) => {
 fs.readFile('myFile.txt', 'utf8', function(err, data) {
   if (err) {
     // handle possible error
-    console.error(err);
+    console.error("ERROR: ", err);
     // kill the process and tell the shell it errored
     process.exit(1);
   }
