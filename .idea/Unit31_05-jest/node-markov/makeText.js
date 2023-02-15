@@ -38,10 +38,8 @@ async function webCat(url) {
   }
 }
 
-let parameter = process.argv[2];
-
-if (parameter.toLowerCase().startsWith('http')) {
-  webCat(parameter);
+if (process.argv[2].toLowerCase().startsWith('http')) {
+  webCat(process.argv[2]);
 } else {
-  cat(parameter);
+  cat(process.argv[2]);
 }
