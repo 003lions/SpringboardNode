@@ -3,7 +3,6 @@ const ExpressError = require('./expressError')
 
 const app = express();
 
-
 function attemptToSaveToDB() {
   throw "Connection Error!"
 }
@@ -13,6 +12,7 @@ const USERS = [
   { username: "Rosalia", city: "R" },
 ]
 
+// locahost:3000/users/StacysMom
 app.get("/users/:username", function (req, res, next) {
   try {
     const user = USERS.find(u => u.username === req.params.username);
@@ -23,6 +23,7 @@ app.get("/users/:username", function (req, res, next) {
   }
 })
 
+// locahost:3000/secret?password=popcorn
 app.get("/secret", (req, res, next) => {
   try {
     if (req.query.password != 'popcorn') {
@@ -35,6 +36,7 @@ app.get("/secret", (req, res, next) => {
 
 })
 
+// locahost:3000/savetodb
 app.get('/savetodb', (req, res, next) => {
   try {
     attemptToSaveToDB()
