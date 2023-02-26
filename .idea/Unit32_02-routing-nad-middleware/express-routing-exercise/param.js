@@ -1,11 +1,7 @@
 const validateParameter = (param) => {
   const splitParams = param.split(",");
-  for(let num in splitParams) {
-    if (num * 1 === NaN) {
-      console.log('not all numbers')
-    }
-  }
+  const numbers = splitParams.map(Number)
+  return numbers
 };
 
 module.exports = { validateParameter };
-
