@@ -55,9 +55,9 @@ app.get('/mean', function(req, res, next) {
 // //   value: 4
 // // }
 
-// mode (most frequent)
+// mode (most frequent)  /mode?nums=1,3,5,7
 
-// all (most frequent)
+// all (most frequent)   /all?nums=1,3,5,7
 //response: {
 //   operation: "all",
 //   mean: 12
