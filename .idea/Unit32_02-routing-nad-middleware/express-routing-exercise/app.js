@@ -6,11 +6,11 @@ const app = express();
 app.use(express.json());
 
 // server log for all requests at all paths
-app.use(function(req, res, next) {
-  console.log(`A ${req.method} request is coming to "${req.path}"!`);
-  // transfer control to the next matching handler
-  return next();
-});
+// app.use(function(req, res, next) {
+//   console.log(`A ${req.method} request is coming to "${req.path}"!`);
+//   // transfer control to the next matching handler
+//   return next();
+// });
 
 ///////////////////////////////
 // mean (average)   http://localhost:3000/mean?nums=1,3,5,7
@@ -54,7 +54,37 @@ app.get('/mean', function(req, res, next) {
 // //   operation: "median",
 // //   value: 4
 // // }
+app.get('/median', function(req, res, next) {
+  try {
+    // http://localhost:3000/mean?num=1,3,5,7
+    if (!req.query.nums)
+      throw new ExpressError("Parameter nums is required, for example /median?nums=1,2,3,4", 400);
 
+    const numbers = validateParameter(req.query.nums)
+
+    // http://localhost:3000/mean?nums=1,b,5,7
+    if (numbers.includes(NaN))
+      throw new ExpressError("Invalid nums.Numbers only, for example /median?nums=1,2,3,4.", 400);
+
+    let median = 0
+    if (numbers.length % 2 === 0) {
+      median = (numbers[numbers.length / 2 - 1] + numbers[numbers.length / 2]) / 2;
+    } else {
+      median = numbers[Math.floor(numbers.length / 2)];
+    }
+
+    // http://localhost:3000/mean?nums=1,2,3,4
+    const result = {
+      response: {
+        operation: "median",
+        value: median,
+      },
+    };
+    return res.json(result);
+  } catch (e) {
+    return next(e);
+  }
+})
 // mode (most frequent)  /mode?nums=1,3,5,7
 
 // all (most frequent)   /all?nums=1,3,5,7
@@ -74,12 +104,18 @@ app.use(function (req, res, next) {
 
 // // generic error handler
 app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
+  // res.status(err.status || 500);
 
   // set the status and alert the user
-  return res.json({
-    error: err,
-    message: err.message
+  // return res.json({
+  //   error: err,
+  //   message: err.message
+  // });
+  const status = err.status || 500;
+  return res.status(status).json({
+    response: {
+      error: { status, message: err.message },
+    },
   });
 });
 
